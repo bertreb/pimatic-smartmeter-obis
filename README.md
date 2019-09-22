@@ -17,20 +17,21 @@ To enable the smartmeter plugin add this to the plugins section via the GUI or a
 ...
 ```
 
-and add the following to the devices
+After restart of Pimatic the SmartmeterObis device can be added
 
 ```
 {
   "id": "smartmeter-obis",
   "class": "SmartmeterObisDevice",
   "name": "xxxx",
+  "protocol": [D0Protocol | SlmProtocol]
   "serialport": "/dev/ttyUSB0",
   "baudRate" : 115200,
   "requestInterval" : 10
 }
 ```
 
-Then install through the standard pimatic plugin install page.
+The required OBIS values can be selected on de device configuration page.
 
 
 Configuration
