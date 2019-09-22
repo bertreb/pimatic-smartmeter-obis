@@ -1,6 +1,6 @@
 module.exports = {
   title: "pimatic-smartmeter-obis device config schemas"
-  Smartmeter3Device: {
+  SmartmeterObisDevice: {
     title: "Smartmeter config options"
     type: "object"
     extensions: ["xLink", "xAttributeOptions"]

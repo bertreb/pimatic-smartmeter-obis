@@ -4,15 +4,15 @@ module.exports = (env) ->
 
   SmartmeterObis = require 'smartmeter-obis'
 
-  class Smartmeter3Plugin extends env.plugins.Plugin
+  class SmartmeterObisPlugin extends env.plugins.Plugin
     init: (app, @framework, @config) =>
       deviceConfigDef = require('./device-config-schema')
-      @framework.deviceManager.registerDeviceClass('Smartmeter3Device', {
-        configDef: deviceConfigDef.Smartmeter3Device,
-        createCallback: (config) => new Smartmeter3Device(config, @framework, deviceConfigDef.Smartmeter3Device)
+      @framework.deviceManager.registerDeviceClass('SmartmeterObisDevice', {
+        configDef: deviceConfigDef.SmartmeterObisDevice,
+        createCallback: (config) => new Smartmeter3Device(config, @framework, deviceConfigDef.SmartmeterObisDevice)
       })
 
-  class Smartmeter3Device extends env.devices.Device
+  class SmartmeterObisDevice extends env.devices.Device
 
     actualusage: 0.0
     totalusage: 0.0
@@ -184,4 +184,4 @@ module.exports = (env) ->
       @attributes = {}
       super()
 
-  return new Smartmeter3Plugin
+  return new SmartmeterObisPlugin
