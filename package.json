@@ -13,10 +13,11 @@
     "devices"
   ],
   "files": [
-    "pimatic-smartmeter-obis.coffee",
     "README.md",
+    "pimatic-smartmeter-obis.coffee",
     "pimatic-smartmeter-obis-config-schema.coffee",
-    "device-config-schema.coffee"
+    "device-config-schema.coffee",
+    "LICENSE"
   ],
   "version": "0.0.3",
   "private": false,
