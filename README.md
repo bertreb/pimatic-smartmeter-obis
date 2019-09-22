@@ -1,13 +1,13 @@
 pimatic-smartmeter-obis
 ===================
 
-Reading "Smartmeter" energy (electricity and gas) usage through P1 port.
-This plugin is a based on the smartmeter versions of saberone and rick00001. 
-This plugin supports serialport version 6 (node v4 and v8) and gives the possibility to change the regex formulas for the energy values in the device config. 
+Reading energy values from a smartmeter. This plugin is a based on the smartmeter-obis library from Apollon77. 
+This plugin supports OBIS smartmeter readings over D0 and SLM protocol and is compatible with node v4 and v8.
+The OBIS codes for electricity (usage and delivery) and gas (usage) are preset, but can be configured to meet the requirements of your smartmeter.
 
 Installation
 ------------
-To enable the smartmeter plugin add this to the plugins in the config.json file.
+To enable the smartmeter plugin add this to the plugins section via the GUI or add it in the config.json file.
 
 ```
 ...
@@ -21,8 +21,8 @@ and add the following to the devices
 
 ```
 {
-  "id": "smartmeter-obis-dsmt",
-  "class": "SmartmeterObisDsmrDevice",
+  "id": "smartmeter-obis",
+  "class": "SmartmeterObisDevice",
   "name": "xxxx",
   "serialport": "/dev/ttyUSB0",
   "baudRate" : 115200,
@@ -35,3 +35,4 @@ Then install through the standard pimatic plugin install page.
 
 Configuration
 -------------
+<to be added>
