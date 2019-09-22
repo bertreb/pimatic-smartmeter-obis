@@ -180,7 +180,7 @@ module.exports = (env) ->
             env.logger.error err.message
       
     destroy: () ->
-      @smartmeterObis.stop
+      @smartmeterObis.stop()
       @attributes = {}
       super()
 
