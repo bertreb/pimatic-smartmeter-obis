@@ -35,4 +35,5 @@ Then install through the standard pimatic plugin install page.
 
 Configuration
 -------------
-<to be added>
+-to be added-
+
