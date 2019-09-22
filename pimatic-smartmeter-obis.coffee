@@ -9,7 +9,7 @@ module.exports = (env) ->
       deviceConfigDef = require('./device-config-schema')
       @framework.deviceManager.registerDeviceClass('SmartmeterObisDevice', {
         configDef: deviceConfigDef.SmartmeterObisDevice,
-        createCallback: (config) => new Smartmeter3Device(config, @framework, deviceConfigDef.SmartmeterObisDevice)
+        createCallback: (config) => new SmartmeterObisDevice(config, @framework, deviceConfigDef.SmartmeterObisDevice)
       })
 
   class SmartmeterObisDevice extends env.devices.Device
