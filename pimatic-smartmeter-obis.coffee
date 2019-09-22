@@ -29,7 +29,7 @@ module.exports = (env) ->
       @name = @config.name
       schema = configDef.properties
 
-      @options = {
+      options = {
         protocol: if @config.protocol then @config.protocol else config.protocol,
         transport: "SerialResponseTransport",
         transportSerialPort: if @config.serialPort then @config.serialPort else config.serialPort,
@@ -38,7 +38,7 @@ module.exports = (env) ->
         obisNameLanguage: 'en'
         #debug: 2
         }
-      @smartmeterObis = SmartmeterObis.init(@options, @processData)
+      @smartmeterObis = SmartmeterObis.init(options, @processData)
       @smartmeterObis.process()
 
       @attributes = {}

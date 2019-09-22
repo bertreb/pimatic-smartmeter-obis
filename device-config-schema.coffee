@@ -6,7 +6,7 @@ module.exports = {
     extensions: ["xLink", "xAttributeOptions"]
     properties:
       protocol:
-        description: "Protocol to be used (D0Protocol or SlmProtocol)"
+        description: "Protocol to be used; D0Protocol or SlmProtocol"
         type: "string"
         default: "D0Protocol"
         enum: ["D0Protocol", "SlmProtocol"]
