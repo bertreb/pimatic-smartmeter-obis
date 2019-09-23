@@ -41,8 +41,8 @@ Configuration
 -------------
 
 Connect your smartmeter via een serial connection (fysical or optical/IR) to your computer. 
-Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....)
-The debuglevel 1 is for basic debugging and 2 is for detailled debugging. 
+Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....).
+Debuglevel 1 is for basic debugging and level 2 is for detailled debugging. 
 
 Create a new SmartmeterObis device.
 You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 
@@ -68,7 +68,7 @@ The OBIS string are preconfigured, based on my smartmeter:
 - tariff1totaldelivery: 1-0:2.8.1 
 - tariff2totaldelivery: 1-0:2.8.2
 
-You can change the OBIS string to get the right values from your smartmeter
+You can change the OBIS string to get the right values from your smartmeter.
 
 If you want to format the values in the GUI, use xAttributeOptions. 
 For example: to get rid of the decimals 'behind the dot' use displayFormat: fixed, decimal:0. 
