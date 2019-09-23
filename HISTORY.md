@@ -22,4 +22,7 @@
 	* bugfix on OBIS values config setting
 * 20190922, v0.0.11
 	* added info dump of received record in debuglevel 2
+* 20190922, v0.0.12
+	* added configurable acronym and unit per value
+
 

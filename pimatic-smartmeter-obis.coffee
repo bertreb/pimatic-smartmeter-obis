@@ -54,6 +54,8 @@ module.exports = (env) ->
           try
             name = attr.name
             obs = attr.obis
+            acr = attr.acronym
+            uni = attr.unit
             if name in schema.obisValues.items.properties.name.enum
               #@attributes[name] = {
               #  description: name
@@ -71,8 +73,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:1.8.0' else obs
-                  acronym: 'T in'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T in' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
               when "tariff1totalusage"
                 getter = ( =>
@@ -82,8 +84,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:1.8.1' else obs
-                  acronym: 'T1 in'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T1 in' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
               when "tariff2totalusage"
                 getter = ( =>
@@ -93,8 +95,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:1.8.2' else obs
-                  acronym: 'T2 in'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T2 in' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
               when "actualusage"
                 getter = ( =>
@@ -104,8 +106,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:1.7.0' else obs
-                  acronym: 'actual'
-                  unit: 'kW'
+                  acronym: if !(acr?) then 'actual' else acr
+                  unit: if !(uni?) then 'kW' else uni
                 }
               when "gastotalusage"
                 getter = ( =>
@@ -115,8 +117,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '0-1:24.2.1' else obs
-                  acronym: 'Gas'
-                  unit: 'm3'
+                  acronym: if !(acr?) then 'Gas' else acr
+                  unit: if !(uni?) then 'm3' else uni
                 }
               when "totaldelivery"
                 getter = ( =>
@@ -126,8 +128,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:2.8.0' else obs
-                  acronym: 'T out'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T out' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
               when "tariff1totaldelivery"
                 getter = ( =>
@@ -137,8 +139,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:2.8.1' else obs
-                  acronym: 'T1 out'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T1 out' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
                when "tariff2totaldelivery"
                 getter = ( =>
@@ -148,8 +150,8 @@ module.exports = (env) ->
                   description: name
                   type: "number"
                   obis: if !(obs?) then '1-0:2.8.2' else obs
-                  acronym: 'T2 out'
-                  unit: 'kWh'
+                  acronym: if !(acr?) then 'T2 out' else acr
+                  unit: if !(uni?) then 'kWh' else uni
                 }
                else
                 throw new Error("Illegal attribute name: #{name} in Smartmeter.")

@@ -54,10 +54,11 @@ module.exports = {
               description: "The OBIS identifier for the specific value. Format a-b:c.d.e"
               required: true
               default: ""
-            label:
+            acronym:
               type: "string"
-              description: "The attribute label text to be displayed. The name will be displayed if not set"
+              description: "The attribute acronym text to be displayed. The name will be displayed if not set"
               required: false
+              default: ""
             unit:
               type: "string"
               description: "The attribute unit to be displayed"

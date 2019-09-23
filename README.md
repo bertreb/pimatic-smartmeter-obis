@@ -69,6 +69,7 @@ The OBIS string are preconfigured, based on my smartmeter:
 - tariff2totaldelivery: 1-0:2.8.2
 
 You can change the OBIS string to get the right values from your smartmeter.
+The acronym and unit per value can be customized.
 
 If you want to format the values in the GUI, use xAttributeOptions. 
 For example: to get rid of the decimals 'behind the dot' use displayFormat: fixed, decimal:0. 
