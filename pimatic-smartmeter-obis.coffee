@@ -186,8 +186,8 @@ module.exports = (env) ->
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
               when "smartmeterid"
                 if obisResult[i.obis]? then _smartmeterid = obisResult[i.obis].values[0].value else _smartmeterid = ""
-                @smartmeterid = Number _smartmeterid
-                @emit "smartmeterid", Number @smartmeterid
+                @smartmeterid = _smartmeterid
+                @emit "smartmeterid", @smartmeterid
           catch err
             env.logger.error err.message
       
