@@ -52,7 +52,6 @@ The available values are:
 - totaldelivery - the total delivered power; sum of tariff1 and tariff2 (kWh)
 - tariff1totaldelivery - the total delivered power tariff1 (kWh) 
 - tariff2totaldelivery - the total delivered power tariff2 (kWh)
-- smartmeterid - the smartmeter identification or manufacturer
 
 The OBIS string are preconfigured, based on my smartmeter:
 - actualusage: 1-0:1.7.0
@@ -63,7 +62,6 @@ The OBIS string are preconfigured, based on my smartmeter:
 - totaldelivery: 1-0:2.8.0
 - tariff1totaldelivery: 1-0:2.8.1 
 - tariff2totaldelivery: 1-0:2.8.2
-- smartmeterid: 0-0:96.1.0
 
 You can change the OBIS string to get the right values from your smartmeter
 

@@ -13,4 +13,6 @@
 	* Completed README.md
 * 20190923, V0.0.7
 	* bug fix in smartmeter-obis.coffee
+* 20190923, V0.0.8
+	* removed smartmeterid
 

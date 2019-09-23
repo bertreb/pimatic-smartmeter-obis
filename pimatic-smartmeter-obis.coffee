@@ -21,7 +21,6 @@ module.exports = (env) ->
     gastotalusage: 0.0
     tariff1totaldelivery: 0.0
     tariff2totaldelivery: 0.0
-    smartmeterid: ""
 
 
     constructor: (config, @framework, configDef) ->
@@ -49,11 +48,12 @@ module.exports = (env) ->
         do (attr) =>
           try
             name = attr.name
+            
             if name in schema.obisValues.items.properties.name.enum
-              @attributes[name] = {
-                description: name
-                type: "number"
-              }
+              #@attributes[name] = {
+              #  description: name
+              #  type: "number"
+              #}
             else
               throw new Error("Illegal attribute name: #{name} in Smartmeter config.")
 
@@ -62,67 +62,91 @@ module.exports = (env) ->
                 getter = ( =>
                   Promise.resolve @totalusage
                 )
-                @attributes[name].obis = '1-0:1.8.0'
-                @attributes[name].acronym = 'T in'
-                @attributes[name].unit = 'kWh'
-
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:1.8.0'
+                  acronym: 'T in'
+                  unit: 'kWh'
+                }
               when "tariff1totalusage"
                 getter = ( =>
                   Promise.resolve @tariff1totalusage
                 )
-                @attributes[name].obis = '1-0:1.8.1'
-                @attributes[name].acronym = 'T1 in'
-                @attributes[name].unit = 'kWh'
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:1.8.1'
+                  acronym: 'T1 in'
+                  unit: 'kWh'
+                }
               when "tariff2totalusage"
                 getter = ( =>
                   Promise.resolve @tariff2totalusage
                 )
-                @attributes[name].obis = '1-0:1.8.2'
-                @attributes[name].acronym = 'T2 in'
-                @attributes[name].unit = 'kWh'
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:1.8.2'
+                  acronym: 'T2 in'
+                  unit: 'kWh'
+                }
               when "actualusage"
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @attributes[name].obis = '1-0:1.7.0'
-                @attributes[name].acronym = 'Actual'
-                @attributes[name].unit = 'kW'
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:1.7.0'
+                  acronym: 'actual'
+                  unit: 'kW'
+                }
               when "gastotalusage"
                 getter = ( =>
                   Promise.resolve @gastotalusage
                 )
-                @attributes[name].obis = '0-1:24.2.1'
-                @attributes[name].acronym = 'Gas'
-                @attributes[name].unit = 'm3'
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '0-1:24.2.1'
+                  acronym: 'Gas'
+                  unit: 'm3'
+                }
               when "totaldelivery"
                 getter = ( =>
                   Promise.resolve @totaldelivery
                 )
-                @attributes[name].obis = '1-0:2.8.0'
-                @attributes[name].acronym = 'T out'
-                @attributes[name].unit = 'kWh'
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:2.8.0'
+                  acronym: 'T out'
+                  unit: 'kWh'
+                }
               when "tariff1totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff1totaldelivery
                 )
-                @attributes[name].obis = '1-0:2.8.1'
-                @attributes[name].acronym = 'T1 out'
-                @attributes[name].unit = 'kWh'
-              when "tariff2totaldelivery"
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:2.8.1'
+                  acronym: 'T1 out'
+                  unit: 'kWh'
+                }
+               when "tariff2totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff2totaldelivery
                 )
-                @attributes[name].obis = '1-0:2.8.1'
-                @attributes[name].acronym = 'T2 out'
-                @attributes[name].unit = 'kWh'
-              when "smartmeterid"
-                getter = ( =>
-                  Promise.resolve @smartmeterid
-                )
-                @attributes[name].obis = '0-0:96.1.0'
-                @attributes[name].acronym = 'ID'
-                @attributes[name].unit = ''
-              else
+                @attributes[name] = {
+                  description: name
+                  type: "number"
+                  obis: '1-0:2.8.2'
+                  acronym: 'T2 out'
+                  unit: 'kWh'
+                }
+               else
                 throw new Error("Illegal attribute name: #{name} in Smartmeter.")
 
             # Create a getter for this attribute
@@ -184,10 +208,6 @@ module.exports = (env) ->
                 if obisResult[i.obis]? then _tariff2TotalDelivery = obisResult[i.obis].values[0].value else _tariff2TotalDelivery = 0
                 @tariff2totaldelivery = Number _tariff2TotalDelivery.toFixed 0
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
-              when "smartmeterid"
-                if obisResult[i.obis]? then _smartmeterid = obisResult[i.obis].values[0].value else _smartmeterid = ""
-                @smartmeterid = _smartmeterid
-                @emit "smartmeterid", @smartmeterid
           catch err
             env.logger.error err.message
       

@@ -31,7 +31,7 @@ module.exports = {
           type: "object"
           properties:
             name:
-              enum: ["totalusage", "tariff1totalusage", "tariff2totalusage", "actualusage", "gastotalusage","totaldelivery","tariff1totaldelivery","tariff2totaldelivery","smartmeterid"]
+              enum: ["totalusage", "tariff1totalusage", "tariff2totalusage", "actualusage", "gastotalusage","totaldelivery","tariff1totaldelivery","tariff2totaldelivery"]
               description: "smartmeter related attributes"
             obis:
               type: "string"
