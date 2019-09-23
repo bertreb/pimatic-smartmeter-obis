@@ -6,10 +6,10 @@ module.exports = {
     extensions: ["xLink", "xAttributeOptions"]
     properties:
       protocol:
-        description: "Protocol to be used; D0Protocol or SlmProtocol"
+        description: "Protocol to be used; D0Protocol or SmlProtocol"
         type: "string"
         default: "D0Protocol"
-        enum: ["D0Protocol", "SlmProtocol"]
+        enum: ["D0Protocol", "SmlProtocol"]
       serialPort:
         description: "Serialport name (e.g. /dev/ttyUSB0)"
         type: "string"

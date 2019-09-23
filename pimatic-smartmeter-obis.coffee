@@ -19,6 +19,7 @@ module.exports = (env) ->
     tariff1totalusage: 0.0
     tariff2totalusage: 0.0
     gastotalusage: 0.0
+    totaldelivery: 0.0
     tariff1totaldelivery: 0.0
     tariff2totaldelivery: 0.0
 
