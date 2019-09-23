@@ -15,4 +15,9 @@
 	* bug fix in smartmeter-obis.coffee
 * 20190923, V0.0.8
 	* removed smartmeterid
+* 20190923, v0.0.9
+	* bugfix SmlProtocol
+* 20190922, v0.0.10
+	* added communication settings 
+	* bugfix on OBIS values config setting
 

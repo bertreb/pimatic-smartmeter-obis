@@ -17,17 +17,21 @@ To enable the smartmeter plugin add this to the plugins section via the GUI or a
 ...
 ```
 
-After restart of Pimatic the SmartmeterObis device can be added
+After restart of Pimatic the SmartmeterObis device can be added. Below the settings with the default values.
 
 ```
 {
   "id": "smartmeter-obis",
   "class": "SmartmeterObisDevice",
   "name": "xxxx",
-  "protocol": [D0Protocol | SlmProtocol]
+  "protocol": [D0Protocol | SlmProtocol] (D0Protocol is default)
   "serialport": "/dev/ttyUSB0",
   "baudRate" : 115200,
-  "requestInterval" : 10
+  "dataBits": 8,
+  "parity": "none",
+  "stopBits": 1,
+  "requestInterval" : 10,
+  "debuglevel": 0 (default is no debugging)
 }
 ```
 
@@ -37,7 +41,8 @@ Configuration
 -------------
 
 Connect your smartmeter via een serial connection (fysical or optical/IR) to your computer. 
-Identify the serialport ID of the smartmeter connection on your computer (/dev/.....)
+Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....)
+The debuglevel 1 is for basic debugging and 2 is for detailled debugging. 
 
 Create a new SmartmeterObis device.
 You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 

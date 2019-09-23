@@ -18,6 +18,22 @@ module.exports = {
         description: "Baudrate to use for communicating with smartmeter (e.g. 115200)"
         type: "integer"
         default: 115200
+      dataBits:
+        description: "Number of databits to use (e.g. 7)"
+        type: "integer"
+        default: 8
+      parity:
+        description: "Parity to use (can be 'none', 'even', 'mark', 'odd', 'space')"
+        type: "string"
+        default: "none"
+      stopBits:
+        description: "Number of stopBits to use (can be 1 or 2)"
+        type: "integer"
+        default: 1
+      debuglevel:
+        description: "Debuglevel (can be 0 (none), 1 (basic) or 2 (detailed))"
+        type: "integer"
+        default: 0    
       requestInterval:
         description: "Interval between measurements (in seconds)"
         type: "integer"

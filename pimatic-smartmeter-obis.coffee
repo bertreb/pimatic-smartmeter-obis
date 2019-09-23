@@ -24,7 +24,7 @@ module.exports = (env) ->
     tariff2totaldelivery: 0.0
 
 
-    constructor: (config, @framework, configDef) ->
+    constructor: (config, framework, configDef) ->
       @config = config
       @id = @config.id
       @name = @config.name
@@ -33,12 +33,16 @@ module.exports = (env) ->
       options = {
         protocol: if @config.protocol then @config.protocol else config.protocol,
         transport: "SerialResponseTransport",
-        transportSerialPort: if @config.serialPort then @config.serialPort else config.serialPort,
-        transportSerialBaudrate: if @config.baudRate then @config.baudRate else config.baudRate,
-        requestInterval: if @config.requestInterval then @config.requestInterval else config.requestInterval,
-        obisNameLanguage: 'en'
-        #debug: 2
+        transportSerialPort: if @config.serialPort? then @config.serialPort else config.serialPort,
+        transportSerialBaudrate: if @config.baudRate? then @config.baudRate else config.baudRate,
+        transportSerialDataBits: if @config.dataBits? then @config.dataBits else config.dataBits,
+        transportSerialParity: if @config.parity? then @config.parity else config.parity,
+        transportSerialStopBits: if @config.stopBits? then @config.stopBits else config.stopBits,
+        requestInterval: if @config.requestInterval? then @config.requestInterval else config.requestInterval,
+        obisNameLanguage: 'en',
+        debug: if @config.debuglevel? then @config.debuglevel else config.debuglevel
         }
+
       @smartmeterObis = SmartmeterObis.init(options, @processData)
       @smartmeterObis.process()
 
@@ -49,7 +53,7 @@ module.exports = (env) ->
         do (attr) =>
           try
             name = attr.name
-            
+            obs = attr.obis
             if name in schema.obisValues.items.properties.name.enum
               #@attributes[name] = {
               #  description: name
@@ -66,7 +70,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:1.8.0'
+                  obis: if !(obs?) then '1-0:1.8.0' else obs
                   acronym: 'T in'
                   unit: 'kWh'
                 }
@@ -77,7 +81,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:1.8.1'
+                  obis: if !(obs?) then '1-0:1.8.1' else obs
                   acronym: 'T1 in'
                   unit: 'kWh'
                 }
@@ -88,7 +92,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:1.8.2'
+                  obis: if !(obs?) then '1-0:1.8.2' else obs
                   acronym: 'T2 in'
                   unit: 'kWh'
                 }
@@ -99,7 +103,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:1.7.0'
+                  obis: if !(obs?) then '1-0:1.7.0' else obs
                   acronym: 'actual'
                   unit: 'kW'
                 }
@@ -110,7 +114,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '0-1:24.2.1'
+                  obis: if !(obs?) then '0-1:24.2.1' else obs
                   acronym: 'Gas'
                   unit: 'm3'
                 }
@@ -121,7 +125,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:2.8.0'
+                  obis: if !(obs?) then '1-0:2.8.0' else obs
                   acronym: 'T out'
                   unit: 'kWh'
                 }
@@ -132,7 +136,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:2.8.1'
+                  obis: if !(obs?) then '1-0:2.8.1' else obs
                   acronym: 'T1 out'
                   unit: 'kWh'
                 }
@@ -143,7 +147,7 @@ module.exports = (env) ->
                 @attributes[name] = {
                   description: name
                   type: "number"
-                  obis: '1-0:2.8.2'
+                  obis: if !(obs?) then '1-0:2.8.2' else obs
                   acronym: 'T2 out'
                   unit: 'kWh'
                 }
@@ -214,7 +218,6 @@ module.exports = (env) ->
       
     destroy: () ->
       @smartmeterObis.stop()
-      @attributes = {}
       super()
 
   return new SmartmeterObisPlugin
