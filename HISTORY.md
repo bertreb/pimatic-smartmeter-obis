@@ -8,6 +8,9 @@
     * Updated deviceId in smartmeter.coffee
 * 20190922, V0.0.5
     * Updated Destroy function in smartmeter.coffee
+* 20190923, V0.0.6
+	* switched default Actual Usage to kW
+	* Completed README.md
 
 
 

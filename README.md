@@ -31,10 +31,43 @@ After restart of Pimatic the SmartmeterObis device can be added
 }
 ```
 
-The required OBIS values can be selected on de device configuration page.
-
+The required smartmeter values can be selected on de device configuration page.
 
 Configuration
 -------------
--to be added-
 
+Connect your smartmeter via een serial connection (fysical or optical/IR) to your computer. 
+Identify the serialport ID of the smartmeter connection on your computer (/dev/.....)
+
+Create a new SmartmeterObis device.
+You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 
+
+The initial device doesn't expose any values. You need to add them in the device configuration (obisValues).
+The available values are:
+- actualusage - the actual power consumption (kW)
+- totalusage - the total consumed power; sum of Tariff1 and Tariff2 (kWh)
+- tariff1totalusage - the total consumed tariff1 (kWh)
+- tariff2totalusage - the total consumend tariff2 power (kWh)
+- gastotalusage - the total consumed gas (m3)
+- totaldelivery - the total delivered power; sum of tariff1 and tariff2 (kWh)
+- tariff1totaldelivery - the total delivered power tariff1 (kWh) 
+- tariff2totaldelivery - the total delivered power tariff2 (kWh)
+- smartmeterid - the smartmeter identification or manufacturer
+
+The OBIS string are preconfigured, based on my smartmeter:
+- actualusage: 1-0:1.7.0
+- totalusage: 1-0:1.8.0
+- tariff1totalusage: 1-0:1.8.1
+- tariff2totalusage: 1-0:1.8.2
+- gastotalusage: 0-1:24.2.1
+- totaldelivery: 1-0:2.8.0
+- tariff1totaldelivery: 1-0:2.8.1 
+- tariff2totaldelivery: 1-0:2.8.2
+- smartmeterid: 0-0:96.1.0
+
+You can change the OBIS string to get the right values from your smartmeter
+
+If you want to format the values in the GUI, use xAttributeOptions. 
+For example: to get rid of the decimals 'behind the dot' use displayFormat: fixed, decimal:0. 
+
+The plugin is in development. Please backup Pimatic before you are using it!

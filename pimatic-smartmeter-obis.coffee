@@ -21,6 +21,7 @@ module.exports = (env) ->
     gastotalusage: 0.0
     tariff1totaldelivery: 0.0
     tariff2totaldelivery: 0.0
+    smartmeterid: ""
 
 
     constructor: (config, @framework, configDef) ->
@@ -85,7 +86,7 @@ module.exports = (env) ->
                 )
                 @attributes[name].obis = '1-0:1.7.0'
                 @attributes[name].acronym = 'Actual'
-                @attributes[name].unit = 'W'
+                @attributes[name].unit = 'kW'
               when "gastotalusage"
                 getter = ( =>
                   Promise.resolve @gastotalusage
@@ -114,6 +115,13 @@ module.exports = (env) ->
                 @attributes[name].obis = '1-0:2.8.1'
                 @attributes[name].acronym = 'T2 out'
                 @attributes[name].unit = 'kWh'
+              when "smartmeterid"
+                getter = ( =>
+                  Promise.resolve @smartmeterid
+                )
+                @attributes[name].obis = '0-0:96.1.0'
+                @attributes[name].acronym = 'ID'
+                @attributes[name].unit = ''
               else
                 throw new Error("Illegal attribute name: #{name} in Smartmeter.")
 
@@ -176,6 +184,10 @@ module.exports = (env) ->
                 if obisResult[i.obis]? then _tariff2TotalDelivery = obisResult[i.obis].values[0].value else _tariff2TotalDelivery = 0
                 @tariff2totaldelivery = Number _tariff2TotalDelivery.toFixed 0
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
+              when "smartmeterid"
+                if obisResult[i.obis]? then _smartmeterid = obisResult[i.obis].values[0].value else _smartmeterid = ""
+                @smartmeterid = Number _smartmeterid
+                @emit "smartmeterid", Number @smartmeterid
           catch err
             env.logger.error err.message
       
