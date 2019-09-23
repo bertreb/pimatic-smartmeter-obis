@@ -30,7 +30,7 @@ module.exports = (env) ->
       @name = @config.name
       schema = configDef.properties
 
-      options = {
+      @options = {
         protocol: if @config.protocol then @config.protocol else config.protocol,
         transport: "SerialResponseTransport",
         transportSerialPort: if @config.serialPort? then @config.serialPort else config.serialPort,
@@ -43,7 +43,7 @@ module.exports = (env) ->
         debug: if @config.debuglevel? then @config.debuglevel else config.debuglevel
         }
 
-      @smartmeterObis = SmartmeterObis.init(options, @processData)
+      @smartmeterObis = SmartmeterObis.init(@options, @processData)
       @smartmeterObis.process()
 
       @attributes = {}
@@ -173,8 +173,9 @@ module.exports = (env) ->
         #setTimeout(_reconnect, 5000);
         return
 
+      if @options.debug == 2 then env.logger.info obisResult
+
       for name, i of @attributes
-        #env.logger.info obisResult[i.obis].values[0].value
         do (name) =>
           try
             if !(obisResult[i.obis]?)
