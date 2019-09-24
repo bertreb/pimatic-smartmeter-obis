@@ -34,5 +34,7 @@
 	* changed smartmeter capabilities log to Pimatic Info and Debug on (re)start of device
 * 20190924, v0.1.3
 	* updated smartmeter capabilities log to Pimatic Info (re)start of device
+* 20190924, v0.1.4
+	* updated smartmeter capabilities log to Pimatic Info (re)start of device
 
 

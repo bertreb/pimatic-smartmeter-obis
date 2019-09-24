@@ -3,7 +3,6 @@ module.exports = (env) ->
   assert = env.require 'cassert'
 
   SmartmeterObis = require 'smartmeter-obis'
-  logFile = require 'fs'
 
   class SmartmeterObisPlugin extends env.plugins.Plugin
     init: (app, @framework, @config) =>
@@ -129,9 +128,8 @@ module.exports = (env) ->
         log = log + obisResult[obisId].idToString() + ': ' +
           SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
           obisResult[obisId].valueToString() + '\n\r'
-      env.logger.info log
-
       @smartmeterLogged = true
+      env.logger.info log
 
     processData: (err, obisResult) =>
       if err
