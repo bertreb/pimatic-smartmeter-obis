@@ -28,5 +28,7 @@
 * 20190924, v0.1.0
 	* made the code compacter
 	* added smartmeter capabilities log on (re)start of device
+* 20190924, v0.1.1
+	* added smartmeter capabilities log to file and debug section on (re)start of device
 
 

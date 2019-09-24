@@ -3,6 +3,7 @@ module.exports = (env) ->
   assert = env.require 'cassert'
 
   SmartmeterObis = require 'smartmeter-obis'
+  logFile = require 'fs'
 
   class SmartmeterObisPlugin extends env.plugins.Plugin
     init: (app, @framework, @config) =>
@@ -49,6 +50,7 @@ module.exports = (env) ->
       @smartmeterLogged = false
 
       @attributes = {}
+      #@validObisIds = [] #based on capabilities of smartmeter
       
       # initialise all attributes
       for attr, i in @config.obisValues
@@ -126,10 +128,14 @@ module.exports = (env) ->
       #env.logger.info obisResult
       log = "\n\rSmartmeter Capabilities (Obis ID: Description = Current Value):\n\r"
       for obisId of obisResult
+        #@validObisIds.push obisResult[obisId].idToString()
         log = log + obisResult[obisId].idToString() + ': ' +
           SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
           obisResult[obisId].valueToString() + '\n\r'
-      env.logger.info log
+      env.logger.debug log
+      logFile.writeFile "smartmeter-capability.log", log, (err) -> if (err) then env.logger.error err.message
+
+      # env.logger.info @validObisIds
       @smartmeterLogged = true
 
     processData: (err, obisResult) =>
@@ -157,11 +163,11 @@ module.exports = (env) ->
                 @emit "totalusage", Number @totalusage
               when "tariff1totalusage"
                 if obisResult[i.obis]?.values[0].value? then _tariff1TotalUsage = obisResult[i.obis].values[0].value else _tariff1TotalUsage = 0
-                @tariff1totalusage = Number _tariff1TotalUsage.toFixed 0
+                @tariff1totalusage = Number _tariff1TotalUsage
                 @emit "tariff1totalusage", Number @tariff1totalusage
               when "tariff2totalusage"
                 if obisResult[i.obis]? then _tariff2TotalUsage = obisResult[i.obis].values[0].value else _tariff2TotalUsage = 0
-                @tariff2totalusage = Number _tariff2TotalUsage.toFixed 0
+                @tariff2totalusage = Number _tariff2TotalUsage
                 @emit "tariff2totalusage", Number @tariff2totalusage
               when "gastotalusage"
                 if obisResult[i.obis]? then _gasTotalUsage = obisResult[i.obis].values[1].value else _gasTotalUsage = 0
@@ -173,11 +179,11 @@ module.exports = (env) ->
                 @emit "totaldelivery", Number @totaldelivery
               when "tariff1totaldelivery"
                 if obisResult[i.obis]? then _tariff1TotalDelivery = obisResult[i.obis].values[0].value else _tariff1TotalDelivery = 0
-                @tariff1totaldelivery = Number _tariff1TotalDelivery.toFixed 0
+                @tariff1totaldelivery = Number _tariff1TotalDelivery
                 @emit "tariff1totaldelivery", Number @tariff1totaldelivery
               when "tariff2totaldelivery"
                 if obisResult[i.obis]? then _tariff2TotalDelivery = obisResult[i.obis].values[0].value else _tariff2TotalDelivery = 0
-                @tariff2totaldelivery = Number _tariff2TotalDelivery.toFixed 0
+                @tariff2totaldelivery = Number _tariff2TotalDelivery
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
           catch err
             env.logger.error err.message
