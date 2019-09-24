@@ -125,7 +125,6 @@ module.exports = (env) ->
       }
 
     logSmartmeter: (obisResult) =>
-      #env.logger.info obisResult
       log = "\n\rSmartmeter Capabilities (Obis ID: Description = Current Value):\n\r"
       for obisId of obisResult
         #@validObisIds.push obisResult[obisId].idToString()
@@ -135,7 +134,6 @@ module.exports = (env) ->
       env.logger.debug log
       logFile.writeFile "smartmeter-capability.log", log, (err) -> if (err) then env.logger.error err.message
 
-      # env.logger.info @validObisIds
       @smartmeterLogged = true
 
     processData: (err, obisResult) =>
