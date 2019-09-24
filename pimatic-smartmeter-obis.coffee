@@ -130,7 +130,6 @@ module.exports = (env) ->
           SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
           obisResult[obisId].valueToString() + '\n\r'
       env.logger.info log
-      env.logger.debug log
 
       @smartmeterLogged = true
 
