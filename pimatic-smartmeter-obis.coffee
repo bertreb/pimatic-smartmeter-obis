@@ -50,7 +50,6 @@ module.exports = (env) ->
       @smartmeterLogged = false
 
       @attributes = {}
-      #@validObisIds = [] #based on capabilities of smartmeter
       
       # initialise all attributes
       for attr, i in @config.obisValues
@@ -127,12 +126,11 @@ module.exports = (env) ->
     logSmartmeter: (obisResult) =>
       log = "\n\rSmartmeter Capabilities (Obis ID: Description = Current Value):\n\r"
       for obisId of obisResult
-        #@validObisIds.push obisResult[obisId].idToString()
         log = log + obisResult[obisId].idToString() + ': ' +
           SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
           obisResult[obisId].valueToString() + '\n\r'
+      env.logger.info log
       env.logger.debug log
-      logFile.writeFile "smartmeter-capability.log", log, (err) -> if (err) then env.logger.error err.message
 
       @smartmeterLogged = true
 

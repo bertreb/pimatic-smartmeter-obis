@@ -41,10 +41,11 @@ The required smartmeter values can be selected on de device configuration page.
 Configuration
 -------------
 
-Connect your smartmeter via een serial connection (fysical or optical/IR) to your computer. 
+Connect your smartmeter via een serial connection to your computer. 
 Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....).
-Debuglevel 1 is for basic debugging and level 2 is for detailled debugging.
-A smartmeter capability list will be generated once on (re)start of the device. This capability list is writen to the pimatic log file under "debug" and to the file "smartmeter-capabilities.log" in de home directory of Pimatic.
+Debuglevel 1 is for basic debugging and level 2 is for detailed debugging.
+A smartmeter capability list will be generated once on (re)start of the device. 
+This capability list is writen to the pimatic log file "debug" and "info".
 
 Create a new SmartmeterObis device.
 You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 
