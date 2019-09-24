@@ -25,4 +25,8 @@
 * 20190922, v0.0.12
 	* added configurable acronym and unit per value
 
+* 20190924, v0.1.0
+	* made the code compacter
+	* added smartmeter capabilities log on (re)start of device
+
 

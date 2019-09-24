@@ -38,8 +38,12 @@ module.exports = {
         description: "Interval between measurements (in seconds)"
         type: "integer"
         default: 10
+      capabilityLog:
+        description: "Log of capabilities of smartmeter on (re)start of Device"
+        type: "boolean"
+        default: true
       obisValues:
-        description: "attributes that will be exposed in the device"
+        description: "Smartmeter values that will be exposed in the device"
         type: "array"
         default: []
         format: "table"
@@ -51,17 +55,17 @@ module.exports = {
               description: "smartmeter related attributes"
             obis:
               type: "string"
-              description: "The OBIS identifier for the specific value. Format a-b:c.d.e"
+              description: "The OBIS identifier for the specific value. The default OBIS id will be used if not set."
               required: true
               default: ""
             acronym:
               type: "string"
-              description: "The attribute acronym text to be displayed. The name will be displayed if not set"
+              description: "The attribute acronym text to be displayed. The default acronym will be displayed if not set."
               required: false
               default: ""
             unit:
               type: "string"
-              description: "The attribute unit to be displayed"
+              description: "The attribute unit to be displayed. The default unit will be displayed if not set."
               required: false
               default: ""
   }

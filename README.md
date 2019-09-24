@@ -31,7 +31,8 @@ After restart of Pimatic the SmartmeterObis device can be added. Below the setti
   "parity": "none",
   "stopBits": 1,
   "requestInterval" : 10,
-  "debuglevel": 0 (default is no debugging)
+  "debuglevel": 0 (default 0 is no debugging),
+  "capabilityLog": true
 }
 ```
 
@@ -42,7 +43,8 @@ Configuration
 
 Connect your smartmeter via een serial connection (fysical or optical/IR) to your computer. 
 Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....).
-Debuglevel 1 is for basic debugging and level 2 is for detailled debugging. 
+Debuglevel 1 is for basic debugging and level 2 is for detailled debugging.
+CapabilityLog is a log of the smartmeter capabilities on (re)start of the device.
 
 Create a new SmartmeterObis device.
 You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 
@@ -70,6 +72,7 @@ The OBIS string are preconfigured, based on my smartmeter:
 
 You can change the OBIS string to get the right values from your smartmeter.
 The acronym and unit per value can be customized.
+You can use the capabilityLog info to tune your device.
 
 If you want to format the values in the GUI, use xAttributeOptions. 
 For example: to get rid of the decimals 'behind the dot' use displayFormat: fixed, decimal:0. 
