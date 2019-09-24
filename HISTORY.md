@@ -17,12 +17,12 @@
 	* removed smartmeterid
 * 20190923, v0.0.9
 	* bugfix SmlProtocol
-* 20190922, v0.0.10
+* 20190923, v0.0.10
 	* added communication settings 
 	* bugfix on OBIS values config setting
-* 20190922, v0.0.11
+* 20190923, v0.0.11
 	* added info dump of received record in debuglevel 2
-* 20190922, v0.0.12
+* 20190923, v0.0.12
 	* added configurable acronym and unit per value
 
 * 20190924, v0.1.0
