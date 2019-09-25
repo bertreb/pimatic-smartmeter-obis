@@ -36,5 +36,7 @@
 	* updated smartmeter capabilities log to Pimatic Info (re)start of device
 * 20190924, v0.1.4
 	* updated smartmeter capabilities log to Pimatic Info (re)start of device
+* 20190924, v0.1.5
+	* updated smartmeter capabilities log to default false
 
 

@@ -32,7 +32,7 @@ After restart of Pimatic the SmartmeterObis device can be added. Below the setti
   "stopBits": 1,
   "requestInterval" : 10,
   "debuglevel": 0 (default 0 is no debugging),
-  "capabilityLog": true
+  "capabilityLog": false
 }
 ```
 
@@ -44,8 +44,8 @@ Configuration
 Connect your smartmeter via een serial connection to your computer. 
 Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....).
 Debuglevel 1 is for basic debugging and level 2 is for detailed debugging.
-When the capabilityLog is switched on, a smartmeter capability list will be generated once on (re)start of the device. 
-This capability list is writen to the pimatic log file under "info".
+When the capabilityLog is switched on, a smartmeter capability list with all the available OBIS values will be generated once on (re)start of the device. 
+This capability list is writen to the pimatic log under "info".
 
 Create a new SmartmeterObis device.
 You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 

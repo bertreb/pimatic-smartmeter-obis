@@ -47,6 +47,7 @@ module.exports = (env) ->
       @smartmeterObis.process()
 
       @smartmeterLogged = false
+      @obisNotSupprtedMsg = false
 
       @attributes = {}
       
@@ -66,42 +67,42 @@ module.exports = (env) ->
                 getter = ( =>
                   Promise.resolve @totalusage
                 )
-                @setAttr(attr, "number", "1-0:1.8.0", "T in", "kWh" )
+                @_setAttr(attr, "number", "1-0:1.8.0", "T in", "kWh" )
               when "tariff1totalusage"
                 getter = ( =>
                   Promise.resolve @tariff1totalusage
                 )
-                @setAttr(attr, "number", "1-0:1.8.1", "T1 in", "kWh" )
+                @_setAttr(attr, "number", "1-0:1.8.1", "T1 in", "kWh" )
               when "tariff2totalusage"
                 getter = ( =>
                   Promise.resolve @tariff2totalusage
                 )
-                @setAttr(attr, "number", "1-0:1.8.2", "T2 in", "kWh" )
+                @_setAttr(attr, "number", "1-0:1.8.2", "T2 in", "kWh" )
               when "actualusage"
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @setAttr(attr, "number", "1-0:1.7.0", "actual", "kW" )
+                @_setAttr(attr, "number", "1-0:1.7.0", "actual", "kW" )
               when "gastotalusage"
                 getter = ( =>
                   Promise.resolve @gastotalusage
                 )
-                @setAttr(attr, "number", "0-1:24.2.1", "Gas", "m3" )
+                @_setAttr(attr, "number", "0-1:24.2.1", "Gas", "m3" )
               when "totaldelivery"
                 getter = ( =>
                   Promise.resolve @totaldelivery
                 )
-                @setAttr(attr, "number", "1-0:2.8.0", "T out", "kWh" )
+                @_setAttr(attr, "number", "1-0:2.8.0", "T out", "kWh" )
               when "tariff1totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff1totaldelivery
                 )
-                @setAttr(attr, "number", "1-0:2.8.1", "T1 out", "kWh" )
+                @_setAttr(attr, "number", "1-0:2.8.1", "T1 out", "kWh" )
               when "tariff2totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff2totaldelivery
                 )
-                @setAttr(attr, "number", "1-0:2.8.2", "T2 out", "kWh" )
+                @_setAttr(attr, "number", "1-0:2.8.2", "T2 out", "kWh" )
               else
                 throw new Error("Illegal attribute name: #{name} in Smartmeter.")
 
@@ -113,7 +114,7 @@ module.exports = (env) ->
 
       super()
 
-    setAttr: (attr, t, obs, acr, uni) =>
+    _setAttr: (attr, t, obs, acr, uni) =>
       @attributes[attr.name] = {
         description: attr.name
         type: t
@@ -122,28 +123,28 @@ module.exports = (env) ->
         unit: if !(attr.unit?) then uni else attr.unit
       }
 
-    logSmartmeter: (obisResult) =>
-      log = "\n\rSmartmeter Capabilities (Obis ID: Description = Current Value):\n\r"
-      for obisId of obisResult
-        log = log + obisResult[obisId].idToString() + ': ' +
-          SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
-          obisResult[obisId].valueToString() + '\n\r'
-      @smartmeterLogged = true
-      env.logger.info log
-
     processData: (err, obisResult) =>
       if err
         env.logger.error err
         return
 
       if @options.debug == 2 then env.logger.debug obisResult
-      if @config.capabilityLog && !@smartmeterLogged then @logSmartmeter(obisResult)
+      if @config.capabilityLog && !@smartmeterLogged
+        log = "\n\rSmartmeter Capabilities (Obis ID: Description = Current Value):\n\r"
+        for obisId of obisResult
+          log = log + obisResult[obisId].idToString() + ': ' +
+            SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
+            obisResult[obisId].valueToString() + '\n\r'
+        @smartmeterLogged = true
+        env.logger.info log
 
       for name, i of @attributes
         do (name) =>
           try
             if !(obisResult[i.obis]?)
-              env.logger.info "Your smartmeter does't support OBIS value: #{i.obis} = " + name
+              if !@obisNotSupprtedMsg
+                env.logger.info "Your smartmeter does't support OBIS value: #{i.obis} = " + name
+                @obisNotSupprtedMsg = true
               return
             switch name
               when "actualusage"

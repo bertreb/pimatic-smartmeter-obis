@@ -41,7 +41,7 @@ module.exports = {
       capabilityLog:
         description: "Log of capabilities of smartmeter on (re)start of Device"
         type: "boolean"
-        default: true
+        default: false
       obisValues:
         description: "Smartmeter values that will be exposed in the device"
         type: "array"
