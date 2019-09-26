@@ -30,10 +30,6 @@ module.exports = {
         description: "Number of stopBits to use (can be 1 or 2)"
         type: "integer"
         default: 1
-      debuglevel:
-        description: "Debuglevel (can be 0 (none), 1 (basic) or 2 (detailed))"
-        type: "integer"
-        default: 0    
       requestInterval:
         description: "Interval between measurements (in seconds)"
         type: "integer"
@@ -42,6 +38,10 @@ module.exports = {
         description: "Log of capabilities of smartmeter on (re)start of Device"
         type: "boolean"
         default: false
+      debuglevel:
+        description: "Debuglevel (can be 0 (none), 1 (basic) or 2 (detailed))"
+        type: "integer"
+        default: 0    
       obisValues:
         description: "Smartmeter values that will be exposed in the device"
         type: "array"
