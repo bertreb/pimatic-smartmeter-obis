@@ -41,5 +41,7 @@
 * 20190926, v0.1.6
 	* improved readability in logfile of capabilities log 
 	* text and code cleanup
+* 20190926, v0.1.7
+	* bugfix
 
 

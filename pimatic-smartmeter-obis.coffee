@@ -130,11 +130,11 @@ module.exports = (env) ->
 
       if @options.debug == 2 then env.logger.debug obisResult
       if @config.capabilityLog && !@smartmeterLogged
-        log = "\rSmartmeter Capabilities (Obis ID: Description = Current Value):\r"
+        log = "Smartmeter Capabilities (Obis ID: Description = Current Value):" + '\n'
         for obisId of obisResult
           log = log + obisResult[obisId].idToString() + ': ' +
             SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], @options.obisNameLanguage).obisName + ' = ' +
-            obisResult[obisId].valueToString() + "\r"
+            obisResult[obisId].valueToString() + '\n'
         @smartmeterLogged = true
         env.logger.info log
 
