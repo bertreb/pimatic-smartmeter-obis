@@ -43,5 +43,7 @@
 	* text and code cleanup
 * 20190926, v0.1.7
 	* bugfix
+* 20190927, v0.1.8
+	* added node v10 compatibility
 
 
