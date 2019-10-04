@@ -2,8 +2,8 @@ pimatic-smartmeter-obis
 ===================
 
 Reading energy values from a smartmeter. This plugin is a based on the smartmeter-obis@1.1.3 library from Apollon77. 
-This plugin supports OBIS smartmeter readings over D0 and SLM protocol and is compatible with node v4 to v10.
-The OBIS codes for electricity (usage and delivery) and gas (usage) are preset, but can be configured to meet the requirements of your smartmeter.
+This plugin supports OBIS smartmeter readings over D0 and SML protocol and is compatible with node v4 to v10.
+The OBIS codes for electricity (usage and delivery) and gas (usage) are preset, but can be configured to meet the specs of your smartmeter.
 
 Installation
 ------------
@@ -24,7 +24,7 @@ After restart of Pimatic the SmartmeterObis device can be added. Below the setti
   "id": "smartmeter-obis",
   "class": "SmartmeterObisDevice",
   "name": "xxxx",
-  "protocol": [D0Protocol | SlmProtocol] (D0Protocol is default)
+  "protocol": [D0Protocol | SmlProtocol] (D0Protocol is default)
   "serialport": "/dev/ttyUSB0",
   "baudRate" : 115200,
   "dataBits": 8,
@@ -48,7 +48,7 @@ When the capabilityLog is switched on, a smartmeter capability list with all the
 This capability list is writen into the pimatic log under "info".
 
 Create a new SmartmeterObis device.
-You can choose between the D0 of Slm protocol depending on the type of smartmeter you are using. 
+You can choose between the D0 of Sml protocol depending on the type of smartmeter you are using. 
 
 The initial device doesn't expose any values. You need to add them in the device configuration (obisValues).
 The available values are:
