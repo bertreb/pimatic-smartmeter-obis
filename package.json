@@ -1,29 +1,27 @@
 {
-  "name": "pimatic-smartmeter-obis",
-  "description": "Get energy usage data from P1 SmartMeter in pimatic",
+  "name": "pimatic-smartmeter-stats",
+  "description": "Get energy statistics from a smartMeter devices in pimatic",
   "author": {
     "name": "Bert Gierveld",
     "email": "gitbertreb@gmail.com",
     "url": "https://github.com/bertreb"
   },
-  "main": "pimatic-smartmeter-obis",
-  "homepage": "https://github.com/bertreb/pimatic-smartmeter-obis.git",
+  "main": "pimatic-smartmeter-stats",
+  "homepage": "https://github.com/bertreb/pimatic-smartmeter-stats.git",
   "keywords": [
     "pimatic",
     "devices",
-    "smartmeter"
+    "smartmeter",
+    "statistics"
   ],
-  "version": "0.1.9",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bertreb/pimatic-smartmeter-obis.git"
+    "url": "git+https://github.com/bertreb/pimatic-smartmeter-stats.git"
   },
-  "configSchema": "pimatic-smartmeter-obis-config-schema.coffee",
+  "configSchema": "pimatic-smartmeter-stats-config-schema.coffee",
   "peerDependencies": {
     "pimatic": "0.9.*"
-  },
-  "dependencies": {
-    "smartmeter-obis": "1.1.3"
   },
   "engines": {
     "node": ">=4",
