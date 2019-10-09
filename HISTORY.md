@@ -47,8 +47,6 @@
 	* added node v10 compatibility
 * 20190927, v0.1.9
 	* some text improvement
-* 20191009, v0.1.10
-	* some text improvement
 
 
 
