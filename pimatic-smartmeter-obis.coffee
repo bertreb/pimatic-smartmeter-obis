@@ -23,12 +23,12 @@ module.exports = (env) ->
     tariff1totaldelivery: 0.0
     tariff2totaldelivery: 0.0
 
-
     constructor: (config, framework, configDef) ->
       @config = config
       @id = @config.id
       @name = @config.name
       schema = configDef.properties
+      @errorMessageThreshold = if @config.errorMessageThreshold? then @config.errorMessageThreshold else config.errorMessageThreshold
 
       @options = {
         protocol: if @config.protocol then @config.protocol else config.protocol,
@@ -45,6 +45,8 @@ module.exports = (env) ->
 
       @smartmeterObis = SmartmeterObis.init(@options, @processData)
       @smartmeterObis.process()
+      @communicationErrors = 0
+      @totalDatagrams = 0
 
       @smartmeterLogged = false
       @obisNotSupprtedMsg = false
@@ -110,7 +112,7 @@ module.exports = (env) ->
             @_createGetter(name, getter)
 
           catch err
-            env.logger.error err.message
+            if @options.debug == 2 then env.logger.error err.message
 
       super()
 
@@ -124,9 +126,15 @@ module.exports = (env) ->
       }
 
     processData: (err, obisResult) =>
+      @totalDatagrams += 1
       if err
-        env.logger.error err
+        @communicationErrors +=1
+        if @options.debug == 2 then env.logger.error err
         return
+      if (@errorMessageThreshold > 0) && (@communicationErrors >= @errorMessageThreshold)
+        env.logger.info "Error threshold reached: " + @communicationErrors + " errors in " + @totalDatagrams + " datagrams"
+        @communicationErrors = 0
+        @totalDatagrams = 0
 
       if @options.debug == 2 then env.logger.debug obisResult
       if @config.capabilityLog && !@smartmeterLogged
@@ -180,7 +188,7 @@ module.exports = (env) ->
                 @tariff2totaldelivery = Number _tariff2TotalDelivery
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
           catch err
-            env.logger.error err.message
+            if @options.debug == 2 then env.logger.error err.message
       
     destroy: () ->
       @smartmeterObis.stop()
