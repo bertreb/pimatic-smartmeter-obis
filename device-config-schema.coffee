@@ -34,6 +34,10 @@ module.exports = {
         description: "Interval between measurements (in seconds)"
         type: "integer"
         default: 10
+      errorMessageThreshold:
+        description: "Number of communication errors before an error message is given."
+        type: "integer"
+        default: 0
       capabilityLog:
         description: "Log of capabilities of smartmeter on (re)start of Device"
         type: "boolean"
