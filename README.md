@@ -43,7 +43,7 @@ Configuration
 
 Connect your smartmeter via een serial connection to your computer. 
 Identify the serialport ID and communications settings of the smartmeter connection, on your computer (/dev/.....).
-Debuglevel 1 is for basic debugging and level 2 is for detailed debugging.
+Debuglevel 1 is for basic debugging and level 2 is for detailed debugging. Setting errorMessageThreshold > 0 will display an error message after the chosen number of errors. Setting errorMessageThreshold to 0, will stop the error messages.
 When the capabilityLog is switched on, a smartmeter capability list with all the available OBIS values will be generated once on (re)start of the device. 
 This capability list is writen into the pimatic log under "info".
 
