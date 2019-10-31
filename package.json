@@ -7,13 +7,20 @@
     "url": "https://github.com/bertreb"
   },
   "main": "pimatic-smartmeter-obis",
+  "files": [
+    "pimatic-smartmeter-obis.coffee",
+    "pimatic-smartmeter-obis-config-schema.coffee",
+    "device-config-schema.coffee",
+    "README.md",
+    "LICENSE"
+  ],
   "homepage": "https://github.com/bertreb/pimatic-smartmeter-obis.git",
   "keywords": [
     "pimatic",
     "devices",
     "smartmeter"
   ],
-  "version": "0.1.10",
+  "version": "0.1.11",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bertreb/pimatic-smartmeter-obis.git"

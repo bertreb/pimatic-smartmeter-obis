@@ -50,6 +50,8 @@
 * 20191014, v0.1.10
 	* 'error log' only when debugLevel = 2
 	* add threshold for showing communication errors
+* 20191031, v0.1.11
+	* completed package.json
 
 
 
