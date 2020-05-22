@@ -72,46 +72,55 @@ module.exports = (env) ->
                   Promise.resolve @totalusage
                 )
                 @_setAttr(attr, "number", "1-0:1.8.0", "T in", "kWh" )
+
               when "tariff1totalusage"
                 getter = ( =>
                   Promise.resolve @tariff1totalusage
                 )
                 @_setAttr(attr, "number", "1-0:1.8.1", "T1 in", "kWh" )
+
               when "tariff2totalusage"
                 getter = ( =>
                   Promise.resolve @tariff2totalusage
                 )
                 @_setAttr(attr, "number", "1-0:1.8.2", "T2 in", "kWh" )
+
               when "actualusage"
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @_setAttr(attr, "number", "1-0:1.7.0", "actual in", "kW" )
+                @_setAttr(attr, "number", "1-0:2.7.0", "actual in", "kW" )
+
               when "actualdelivery"
                 getter = ( =>
                   Promise.resolve @actualdelivery
                 )
-                @_setAttr(attr, "number", "1-0:2.7.0", "actual out", "kW" )
+                @_setAttr(attr, "number", "1-0:1.7.0", "actual out", "kW" )
+
               when "gastotalusage"
                 getter = ( =>
                   Promise.resolve @gastotalusage
                 )
                 @_setAttr(attr, "number", "0-1:24.2.1", "Gas", "m3" )
+
               when "totaldelivery"
                 getter = ( =>
                   Promise.resolve @totaldelivery
                 )
                 @_setAttr(attr, "number", "1-0:2.8.0", "T out", "kWh" )
+
               when "tariff1totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff1totaldelivery
                 )
                 @_setAttr(attr, "number", "1-0:2.8.1", "T1 out", "kWh" )
+
               when "tariff2totaldelivery"
                 getter = ( =>
                   Promise.resolve @tariff2totaldelivery
                 )
                 @_setAttr(attr, "number", "1-0:2.8.2", "T2 out", "kWh" )
+
               else
                 throw new Error("Illegal attribute name: #{name} in Smartmeter.")
 
