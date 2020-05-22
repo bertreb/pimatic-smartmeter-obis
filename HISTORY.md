@@ -52,5 +52,5 @@
 	* add threshold for showing communication errors
 * 20191031, v0.1.11
 	* completed package.json
-* 20200522, v0.1.14
+* 20200522, v0.1.15
 	* add actual delivery

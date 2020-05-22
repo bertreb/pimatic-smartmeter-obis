@@ -54,7 +54,7 @@ module.exports = (env) ->
       @obisNotSupprtedMsg = false
 
       @attributes = {}
-      
+
       # initialise all attributes
       for attr, i in @config.obisValues
         do (attr) =>
@@ -176,7 +176,7 @@ module.exports = (env) ->
                 @actualusage = Number _actualUsage
                 @emit "actualusage", Number @actualusage
               when "actualdelivery"
-                if obisResult[i.obis]? then _actualUsage = obisResult[i.obis].values[0].value else _actualUsage = 0
+                if obisResult[i.obis]? then _actualDelivery = obisResult[i.obis].values[0].value else _actualDelivery = 0
                 @actualdelivery = Number _actualDelivery
                 @emit "actualdelivery", Number @actualdelivery
               when "totalusage"
@@ -209,7 +209,7 @@ module.exports = (env) ->
                 @emit "tariff2totaldelivery", Number @tariff2totaldelivery
           catch err
             if @options.debug == 2 then env.logger.error err.message
-      
+
     destroy: () ->
       @smartmeterObis.stop()
       super()
