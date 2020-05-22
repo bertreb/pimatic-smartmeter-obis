@@ -89,13 +89,13 @@ module.exports = (env) ->
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @_setAttr(attr, "number", "1-0:2.7.0", "actual in", "kW" )
+                @_setAttr(attr, "number", "1-0:1.7.0", "actual in", "kW" )
 
               when "actualdelivery"
                 getter = ( =>
                   Promise.resolve @actualdelivery
                 )
-                @_setAttr(attr, "number", "1-0:1.7.0", "actual out", "kW" )
+                @_setAttr(attr, "number", "1-0:2.7.0", "actual out", "kW" )
 
               when "gastotalusage"
                 getter = ( =>
