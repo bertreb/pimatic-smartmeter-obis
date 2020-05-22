@@ -18,7 +18,7 @@
 * 20190923, v0.0.9
 	* bugfix SmlProtocol
 * 20190923, v0.0.10
-	* added communication settings 
+	* added communication settings
 	* bugfix on OBIS values config setting
 * 20190923, v0.0.11
 	* added info dump of received record in debuglevel 2
@@ -39,7 +39,7 @@
 * 20190924, v0.1.5
 	* updated smartmeter capabilities log to default false
 * 20190926, v0.1.6
-	* improved readability in logfile of capabilities log 
+	* improved readability in logfile of capabilities log
 	* text and code cleanup
 * 20190926, v0.1.7
 	* bugfix
@@ -52,6 +52,5 @@
 	* add threshold for showing communication errors
 * 20191031, v0.1.11
 	* completed package.json
-
-
-
+* 20200522, v0.1.12
+	* add actual delivery

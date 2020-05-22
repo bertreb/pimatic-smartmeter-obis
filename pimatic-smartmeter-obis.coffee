@@ -15,6 +15,7 @@ module.exports = (env) ->
   class SmartmeterObisDevice extends env.devices.Device
 
     actualusage: 0.0
+    actualdelivery: 0.0
     totalusage: 0.0
     tariff1totalusage: 0.0
     tariff2totalusage: 0.0
@@ -22,6 +23,7 @@ module.exports = (env) ->
     totaldelivery: 0.0
     tariff1totaldelivery: 0.0
     tariff2totaldelivery: 0.0
+
 
     constructor: (config, framework, configDef) ->
       @config = config
@@ -84,7 +86,12 @@ module.exports = (env) ->
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @_setAttr(attr, "number", "1-0:1.7.0", "actual", "kW" )
+                @_setAttr(attr, "number", "1-0:1.7.0", "actual in", "kW" )
+              when "actualdelivery"
+                getter = ( =>
+                  Promise.resolve @actualdelivery
+                )
+                @_setAttr(attr, "number", "1-0:2.7.0", "actual out", "kW" )
               when "gastotalusage"
                 getter = ( =>
                   Promise.resolve @gastotalusage
@@ -159,6 +166,10 @@ module.exports = (env) ->
                 if obisResult[i.obis]? then _actualUsage = obisResult[i.obis].values[0].value else _actualUsage = 0
                 @actualusage = Number _actualUsage
                 @emit "actualusage", Number @actualusage
+              when "actualdelivery"
+                if obisResult[i.obis]? then _actualUsage = obisResult[i.obis].values[0].value else _actualUsage = 0
+                @actualdelivery = Number _actualDelivery
+                @emit "actualdelivery", Number @actualdelivery
               when "totalusage"
                 if obisResult[i.obis]? then _totalUsage = obisResult[i.obis].values[0].value else _totalUsage = 0
                 @totalusage = Number _totalUsage
