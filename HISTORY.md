@@ -54,3 +54,5 @@
 	* completed package.json
 * 20200522, v0.1.16
 	* add actual delivery
+* 20200523, v0.1.17
+	* changed unit of actual usage and delivery from kW to W

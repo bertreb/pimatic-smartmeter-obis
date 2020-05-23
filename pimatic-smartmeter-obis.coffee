@@ -89,13 +89,13 @@ module.exports = (env) ->
                 getter = ( =>
                   Promise.resolve @actualusage
                 )
-                @_setAttr(attr, "number", "1-0:1.7.0", "actual in", "kW" )
+                @_setAttr(attr, "number", "1-0:1.7.0", "actual in", "W" )
 
               when "actualdelivery"
                 getter = ( =>
                   Promise.resolve @actualdelivery
                 )
-                @_setAttr(attr, "number", "1-0:2.7.0", "actual out", "kW" )
+                @_setAttr(attr, "number", "1-0:2.7.0", "actual out", "W" )
 
               when "gastotalusage"
                 getter = ( =>
@@ -173,11 +173,11 @@ module.exports = (env) ->
             switch name
               when "actualusage"
                 if obisResult[i.obis]? then _actualUsage = obisResult[i.obis].values[0].value else _actualUsage = 0
-                @actualusage = Number _actualUsage
+                @actualusage = 1000 * Number _actualUsage
                 @emit "actualusage", Number @actualusage
               when "actualdelivery"
                 if obisResult[i.obis]? then _actualDelivery = obisResult[i.obis].values[0].value else _actualDelivery = 0
-                @actualdelivery = Number _actualDelivery
+                @actualdelivery = 1000 * Number _actualDelivery
                 @emit "actualdelivery", Number @actualdelivery
               when "totalusage"
                 if obisResult[i.obis]? then _totalUsage = obisResult[i.obis].values[0].value else _totalUsage = 0
